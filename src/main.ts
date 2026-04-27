@@ -70,6 +70,7 @@ function showTodos() {
   }
 }
 
+const manager = new todoManager()
 function addTodo() {
   let nameInput = document.getElementById("taskname") as HTMLInputElement
   let descInput = document.getElementById("description") as HTMLInputElement
@@ -85,21 +86,29 @@ function addTodo() {
   const status = statusInput.value === "true"
 
 
-  if (taskname && description && deadline) {
-    const manager = new todoManager()
-    const newTodo = new todo(taskname, description, deadline, priority, status, manager.todos.length)
-    manager.addTodo(newTodo)
-    nameInput.value = "";
-    descInput.value = "";
-    deadlineInput.value = "";
-    prioInput.value = "";
-    statusInput.value = "";
-    console.log(newTodo)
+  const newTodo = new todo(taskname, description, deadline, priority, status, manager.todos.length)
 
-    showTodos();
+  const correct = manager.addTodo(newTodo)
+  if (!correct) {
+    const errorList = document.getElementById("errorList") as HTMLUListElement
+    const error = document.createElement("li") as HTMLLIElement
 
+    error.innerHTML = `Fyll i samtliga fält`
+
+    errorList?.appendChild(error)
+
+    return;
   }
+  nameInput.value = "";
+  descInput.value = "";
+  deadlineInput.value = "";
+  prioInput.value = "";
+  statusInput.value = "";
+
+  showTodos();
+
 }
+
 
 function removeTodo(id: number): void {
   const manager = new todoManager();

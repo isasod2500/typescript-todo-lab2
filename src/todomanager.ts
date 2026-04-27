@@ -9,9 +9,15 @@ export class todoManager {
         this.todos = Storage.getTodo();
     }
 
-    addTodo(todo: todo): void {
+    addTodo(todo: todo): boolean {
+        if(todo.taskname === "" || todo.description === "" || todo.deadline === "") {
+            return false;
+        }
+
         this.todos.push(todo)
         Storage.storeTodo(this.todos)
+
+        return true;
     }
 
     removeTodo(id: number): void {
