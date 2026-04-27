@@ -9,9 +9,16 @@ export class todoManager {
         this.todos = Storage.getTodo();
     }
 
-    addTodo(todo: todo): void {
-        this.todos.push(todo)
+    addTodo(taskname: string, description: string, deadline: string, priority: number, completed: boolean, id: number): boolean {
+        if (taskname === "" || description === "" || deadline === "") {
+            return false;
+        }
+
+        const newTodo = new todo(taskname, description, deadline, priority, completed, id)
+        this.todos.push(newTodo)
         Storage.storeTodo(this.todos)
+
+        return true;
     }
 
     removeTodo(id: number): void {
@@ -21,7 +28,7 @@ export class todoManager {
 
     todoCompleted(id: number): void {
         const findTodo = this.todos.find(t => t.id === id);
-        if(findTodo) {
+        if (findTodo) {
             findTodo.completed = true;
             Storage.storeTodo(this.todos)
         }
