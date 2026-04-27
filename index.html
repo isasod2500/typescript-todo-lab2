@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+  <script type="module" src="src/main.ts"></script>
+  <link rel="stylesheet" href="src/style.css">
+  <title>typescript-moment2</title>
+</head>
+
+<body>
+  <section id="main">
+    <h1>Att-göra lista</h1>
+    <form id="form">
+      <label for="taskname">Uppgiftsnamn:</label>
+      <input type="text" name="taskname" id="taskname">
+      <label for="description">Att göra:</label>
+      <textarea id="description"></textarea>
+      <label for="deadline">Deadline:</label>
+      <input type="date" name="deadline" id="deadline">
+      <label for="priority">Prioritet (1 är högst, 3 är lägst):</label>
+      <select id="priority" name="priority">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <select id="status" name="status">
+        <option value="false">Pågående</option>
+        <option value="true">Avslutad</option>
+      </select>
+      <button type="button" id="submitBtn">Spara uppgift</button>
+    </form>
+  </section>
+  <section id="todoList">
+    <h2>Aktuella uppgifter</h2>
+    <div id="ongoing">
+      
+
+    </div>
+      <h2>Avslutade uppgifter</h2>
+    <div id="completed">
+        
+
+    </div>
+  </section>
+</body>
+
+</html>
